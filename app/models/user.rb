@@ -14,7 +14,12 @@ class User < ActiveRecord::Base
 
   has_many :ownerships , foreign_key: "user_id", dependent: :destroy
   has_many :items ,through: :ownerships
+  
+  has_many :wants, class_name: "Want", foreign_key: "user_id", dependent: :destroy
+  has_many :want_items , through: :wants, source: :item
 
+  has_many :haves, class_name: "Have", foreign_key: "user_id", dependent: :destroy
+  has_many :have_items , through: :haves, source: :item
 
   # 他のユーザーをフォローする
   def follow(other_user)
@@ -29,22 +34,49 @@ class User < ActiveRecord::Base
     following_users.include?(other_user)
   end
 
-  ## TODO 実装
+  #アイテムを所有する
   def have(item)
+    haves_relationships.find_or_create_by(item_id: item.id)
   end
 
+  #アイテムを手放す
   def unhave(item)
+    haves_relationships.find_by(item_id: item.id).destroy
   end
 
+  #アイテムを所有しているか？
   def have?(item)
+    haves_items.include?(item)
   end
 
+  #アイテムを欲しい
   def want(item)
+    wants_relationships.find_or_create_by(item_id: item.id)
   end
 
+  #アイテムを欲しくない
   def unwant(item)
+    wants_relationships.find_by(item_id: item.id).destroy
   end
 
+  #アイテムを欲しいかどうか？
   def want?(item)
+    wants_items.include?(item)
   end
+  
+  # 他のユーザーをフォローする
+  def follow(other_user)
+    following_relationships.find_or_create_by(followed_id: other_user.id)
+  end
+
+  # フォローしているユーザーをアンフォローする
+  def unfollow(other_user)
+    following_relationship = following_relationships.find_by(followed_id: other_user.id)
+    following_relationship.destroy if following_relationship
+  end
+
+  # あるユーザーをフォローしているかどうか？
+  def following?(other_user)
+    following_users.include?(other_user)
+  end  
 end
