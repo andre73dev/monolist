@@ -56,3 +56,4 @@ group :development, :test do
   gem 'pry-rails'
 end
 
+gem 'pry-byebug', group: :development

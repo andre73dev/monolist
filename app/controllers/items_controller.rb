@@ -11,8 +11,6 @@ class ItemsController < ApplicationController
                                   :item_page => 2
                                   )
       @amazon_items = response.items
-      
-      #binding.pry
     end
   end
 
