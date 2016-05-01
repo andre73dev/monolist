@@ -74,3 +74,24 @@ user3.follow(user6)
 user4.follow(user1)
 user4.follow(user2)
 user4.follow(user3)
+
+
+item_ids = [5, 1, 2, 8, 3, 9, 10, 15, 4, 6, 7, 12]
+1.upto(12) do |user_id|
+  item_ids.each do |item_id|
+    eval("user#{user_id}").have(Item.find(item_id))
+  end
+  item_ids.pop
+end
+user13.have(Item.find(3))
+
+# 1位(12票):たのしいRuby第4版
+# 2位(11票):非エンジニアのためのプログラミング講座
+# 3位(10票):Ruby on Rails 4アプリケーションプログラミング
+# 4位(9票):パーフェクトRuby on Rails
+# 4位(9票):ノンデザイナーズ・デザインブック [フルカラー新装増補版]
+# 6位(7票):プレゼン資料のための正しいデザイン　ビジネスを成功に導くレイアウトの技術
+# 7位(6票):ゼロからはじめるデザイン
+# 8位(5票):HTML/XHTML&amp;スタイルシートレッスンブック
+# 9位(4票):実践Ruby on Rails 4 現場のプロから学ぶ本格Webプログラミング
+# 10位(3票):プログラミング言語 Ruby
