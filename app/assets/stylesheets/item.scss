@@ -164,3 +164,48 @@
     }
   }
 }
+
+.media {
+  div {
+    display: table;
+    div {
+      display: table-cell;
+      padding: 10px;
+      vertical-align: middle;
+      word-wrap: break-word;
+    }
+    .ranking {
+      color: #777;
+      font-size: 42px;
+      text-align: center;
+      width: 120px;
+    }
+
+    @media (min-width: 0px) {
+      .detail {
+        width: 204px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .detail {
+        width: 404px;
+      }
+    }
+    @media (min-width: 768px) {
+      .detail {
+        width: 404px;
+      }
+    }
+    @media (min-width: 992px) {
+      .detail {
+        width: 728px;
+      }
+    }
+    @media (min-width: 1200px) {
+      .detail {
+        width: 836px;
+      }
+    }
+  }
+}

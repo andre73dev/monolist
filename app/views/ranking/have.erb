@@ -1,22 +1,29 @@
+<h1>持っているものランキング</h1>
 <div class="container">
   <div class="container-inner inner-default clearfix">
+    <ul class="media-list">
     <% @items.each_with_index do |item,i| %>
-      <div class="item-box">
-        <div class="image">
-          <div class="img-wrap">
-            <% if item.large_image.present? %>
-              <%= i+1 %><%= image_tag(item.large_image , alt: item.title) %>
-            <% else %>
-              <%= image_tag("no-image.png" , alt: item.title) %>
-            <% end %>
+      <li class="media">
+        <div>
+          <div class="ranking">
+            <%= i+1 %>
           </div>
-        </div>
-        <div class="detail">
-          <p class="title">
-            <%= item.title %>
-          </p>
-        </div>
-      </div>
+          <% if item.medium_image.present? %>
+          <div>
+            <%= image_tag(item.medium_image , alt: item.title) %>
+            <% else %>
+            <%= image_tag("no-image.png" , alt: item.title) %>
+            <% end %>
+          </div>    
+          <div class="detail">
+            <p class="title">
+              <%= item.title %>
+            </p>
+            <%= link_to(image_tag("amazon-button.png", {alt: "Amazon詳細ページへ"}), item.detail_page_url) %>
+          </div>
+        <div>
+      </li>
     <% end %>
+    </ul>
   </div>
 </div>

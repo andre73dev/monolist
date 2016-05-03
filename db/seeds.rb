@@ -95,3 +95,11 @@ user13.have(Item.find(3))
 # 8位(5票):HTML/XHTML&amp;スタイルシートレッスンブック
 # 9位(4票):実践Ruby on Rails 4 現場のプロから学ぶ本格Webプログラミング
 # 10位(3票):プログラミング言語 Ruby
+
+item_ids = [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+1.upto(12) do |user_id|
+  item_ids.each do |item_id|
+    eval("user#{user_id}").want(Item.find(item_id))
+  end
+  item_ids.pop
+end
